@@ -1,0 +1,168 @@
+<!--Liberty Amazon Donator Options Webpage
+-->
+<html>
+<style id='page-skin-1' type='text/css'></style>
+<head>
+    <title>FDR Amazon Donator - Affiliate Link Options</title>
+    <script language="JavaScript" type="text/JavaScript" src="js/thirdparty/underscore-min.js"></script>
+    <script language="JavaScript" type="text/JavaScript" src="js/thirdparty/jquery-2.1.4.min.js"></script>
+    <script language="JavaScript" type="text/JavaScript" src="js/thirdparty/jquery-ui.min.js"></script>
+    <script language="JavaScript" type="text/JavaScript" src="js/thirdparty/lockr.min.js"></script>
+    <link rel="stylesheet" href="css/options.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+    <script language="JavaScript" type="text/JavaScript" src="js/options.js"></script>
+</head>
+
+<body>
+<div class="content-inner">
+
+    <p>
+        <b>Purpose</b>: <i>Liberty Amazon Donator</i> is a Chrome browser extension that makes it easy to direct a
+        portion of the money you spend on Amazon to your favorite Liberty organization at no cost to you!
+        Once the extension is installed, it will add an Amazon Associate Id tag to the Amazon links you visit
+        and your organization will receive a kickback for every purchase you make.
+    </p>
+    <p>
+        <b>Usage</b>: By default, every 24 hours the extension picks a random organization to donate to (since the
+        Amazon cookie is active for 24 hours).
+        For the next 24 hours, Amazon assigns a share of any purchases you make to this organization
+        (between <a href="https://affiliate-program.amazon.com/gp/associates/help/operating/advertisingfees">1% to
+        10%</a> capped to $10-$25 maximum depending).
+
+        <br/><br/>You can add or remove an organization as well as update its affiliate codes per country.
+        <br/><br/>If you'd prefer to give a particular organization more (or less) chances of a getting a share of your
+        purchases,
+        then you can increase (or decrease) its assigned probability to any value between 0% (will never be picked) and
+        100% (will always be picked).
+    </p>
+    <p>
+        <b>Implementation</b>: This extension is a rewritten version of the <a href="http://amaflink.blogspot.co.uk/">Amazon
+        Affiliate Link extension</a>
+        which itself is a stripped down version of the <a href="https://github.com/11craft/philanthropist">Philanthropist
+        extension</a>.
+        The source code for this extension is maintained at <a href="https://github.com/Marmaladepen/liberty-amazon-donator">https://github.com/Marmaladepen/liberty-amazon-donator</a>.
+        Contact: <a href="mailto:Marmalade.pen@gmail.com">marmalade.pen@gmail.com</a>
+    </p>
+
+
+    <div id="accordion"></div>
+
+    <br/>
+    Current Selection: <span id="current-selection"></span><br/>
+    Pick New Random Affiliate Every <input id="update-frequency" type="text" size="3" value=""/> hours<br/>
+    <br/>
+    <br/>
+    <button id="reset-button" type="submit">Reset to Default Settings</button>
+    <br/>
+    <br/>
+    <br/>
+    <button id="save-button" type="submit"><font size="+2">Save Settings</font></button>
+</div>
+
+<div id="new-affiliate-form" style="display: none;">
+
+    Organization Name: <input id="new-affiliate-name" type="text" value=""><br/>
+    Description (optional): <input id="new-affiliate-description" type="text" value=""><br/>
+    Link (optional): <input id="new-affiliate-url" type="text" value=""><br/>
+
+    <table width="100%">
+        <tbody>
+        <tr>
+            <th>Amazon Website</th>
+            <th>Amazon Affiliate Code</th>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-US.gif"></img>
+                <span> <a href="http://www.amazon.com">United States - Amazon.com</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-US" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-CA.gif"></img>
+                <span> <a href="http://www.amazon.ca">Canada - Amazon.ca</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-CA" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-UK.gif"></img>
+                <span> <a href="http://www.amazon.co.uk">United Kingdom - Amazon.co.uk</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-UK" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-DE.gif"></img>
+                <span> <a href="http://www.amazon.de">Germany &amp; Austria - Amazon.at &amp; Amazon.de</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-DE" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-ES.gif"></img>
+                <span> <a href="http://www.amazon.es">Spain - Amazon.es</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-ES" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-FR.gif"></img>
+                <span> <a href="http://www.amazon.fr">France - Amazon.fr</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-FR" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-IT.gif"></img>
+                <span> <a href="http://www.amazon.it">Italy - Amazon.it</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-IT" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-JP.gif"></img>
+                <span> <a href="http://www.amazon.co.jp">Japan - Amazon.co.jp</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-JP" type="text" value="">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="images/flag-CN.gif"></img>
+                <span> <a href="http://www.amazon.cn">China - Amazon.cn (Joyo.com)</a></span>
+            </td>
+            <td>
+                <input id="new-affiliate-trackId-CN" type="text" value="">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+		<span>
+			<br><br>
+			<font size="+1">Probability of being picked: <input id="new-affiliate-probability" size="5" type="text"
+                                                                value="">%</font>
+		</span>
+
+</div>
+</body>
+</html>
