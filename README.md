@@ -7,7 +7,8 @@ Chrome extension that automatically applies Amazon Affiliate Tracking Id of Libe
 ## Purpose
 *Liberty Amazon Donator* is a Chrome browser extension that makes it easy to direct a portion of the money you spend on Amazon to your favorite Liberty organization at no cost to you!
 Once the extension is installed, it will add an Amazon Associate Id tag to the Amazon links you visit and your organization will receive a kickback for every purchase you make.
-   
+
+Works on Amazon.com, .ca, .co.uk, .fr, .de, .cn, .co.jp and .it.   
    
 ## Usage
 
