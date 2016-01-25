@@ -29,8 +29,10 @@ Go to the Options page in [Chrome Settings](chrome://extensions/) to change sett
    
 ## Implementation
  
- This extension is a rewritten version of the [Amazon Affiliate Link extension](http://amaflink.blogspot.co.uk)
+This extension is a rewritten version of the [Amazon Affiliate Link extension](http://amaflink.blogspot.co.uk)
 which itself is a stripped down version of the [Philanthropist extension](https://github.com/11craft/philanthropist).
+
+Comments/Suggestions: https://www.reddit.com/r/Anarcho_Capitalism/comments/42m1n0/donate_to_ancap_causes_by_shopping_on_amazon/
 
 Contact: marmalade.pen@gmail.com
 
