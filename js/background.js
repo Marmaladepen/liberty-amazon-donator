@@ -2,6 +2,8 @@
  * Always runs in background, and redirects current Amazon URL with selected affiliate tag added.
  */
 
+var debugLogging = false;
+
 var AMAZON_AFFILIATE_URL_TAG = "tag";
 
 var amazonAffiliatesDefault = {
@@ -165,6 +167,10 @@ function resetAll() {
     Lockr.set("currentlySelectedAffiliate", currentlySelectedAffiliate);
 }
 
+function getDebugLogging() {
+    return debugLogging;
+}
+
 /**
  * returns the url with key-value pair added to the parameter string.
  *
@@ -280,7 +286,7 @@ function getRandomAffiliateTrackId(amazonAffiliates, countryId) {
 
     for (i = 0; i < cumulativeDistribution.length && r >= cumulativeDistribution[i]; i++);
 
-    console.log("Random=" + r + " => picked=" + trackIds[i]);
+    if (debugLogging) console.log("Random=" + r + " => picked=" + trackIds[i]);
 
     lastAffiliateUpdateTime[countryId] = $.now();
     currentlySelectedAffiliate[countryId] = affiliateIds[i];
@@ -310,12 +316,12 @@ function redirectOnQualifyingUrlRequest(countryId, details) {
 
         var getRandomAffiliateTrackIdResponse = getRandomAffiliateTrackId(amazonAffiliates, countryId);
         if (_.isUndefined(getRandomAffiliateTrackIdResponse)) {
-            console.log("Warning: Could not find random valid affiliate"); //TODO remove
+            if (debugLogging) console.log("Warning: Could not find random valid affiliate"); //TODO remove
             return {}; // do nothing
         }
         var allAffiliateTrackIds = getRandomAffiliateTrackIdResponse.allTrackIds;
         var affiliateCodeTrackId = getRandomAffiliateTrackIdResponse.randomTrackId;
-        console.log("affiliateCodeTrackId = " + affiliateCodeTrackId);
+        if (debugLogging) console.log("affiliateCodeTrackId = " + affiliateCodeTrackId);
 
         // if the url does not already contain the tracking id
         var trackIdPresentInUrl = _.any(allAffiliateTrackIds, function (trackId) {
@@ -325,7 +331,7 @@ function redirectOnQualifyingUrlRequest(countryId, details) {
         if (!trackIdPresentInUrl &&
             details.url.search("ap/signin") == -1 &&
             details.url.search("ap/widget") == -1) {
-            console.log("redirecting to " + insertParam(details.url, AMAZON_AFFILIATE_URL_TAG, affiliateCodeTrackId));
+            if (debugLogging) console.log("redirecting to " + insertParam(details.url, AMAZON_AFFILIATE_URL_TAG, affiliateCodeTrackId));
             // redirect them to the url with the new tracking id parameter inserted
             return {redirectUrl: insertParam(details.url, AMAZON_AFFILIATE_URL_TAG, affiliateCodeTrackId)};
         }

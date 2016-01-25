@@ -5,7 +5,7 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
 var amazonCountries = backgroundPage.getAmazonCountries();
 var amazonAffiliates = backgroundPage.getAmazonAffiliates();
-
+var debugLogging = backgroundPage.getDebugLogging();
 /**
  * Calculates the sum of the modified and unmodified probabilities
  *
@@ -51,7 +51,7 @@ function save_options() {
         var userProbability = Number(probabilityField.val());
         var originalUserProbability = Number(probabilityField.attr('old_value'));
 
-        console.log("save_options: id=" + affiliateId + "   proba=" + userProbability + "   old_proba=" + originalUserProbability);
+        if (debugLogging) console.log("save_options: id=" + affiliateId + "   proba=" + userProbability + "   old_proba=" + originalUserProbability);
         if (originalUserProbability != userProbability) { // see if it was changed by user
             if (!_.isUndefined(userProbability) && !_.isNaN(userProbability) &&
                 userProbability <= 100) {
@@ -77,7 +77,7 @@ function save_options() {
 
             if (!_.isUndefined(countryTrackId) && !_.isEmpty(countryTrackId) //TODO want to save empty trackIds
             ) {
-                console.log("countryTrackId : " + countryTrackId);
+                if (debugLogging) console.log("countryTrackId : " + countryTrackId);
                 affiliate.trackIds[countryId] = countryTrackId
             }
 
@@ -99,7 +99,7 @@ function save_options() {
  */
 function reload_options() {
 
-    console.log("RESTORE OPTIONS CALLED");
+    if (debugLogging)  console.log("RESTORE OPTIONS CALLED");
 
     var accordion = $("#accordion");
 
@@ -168,7 +168,7 @@ function reload_options() {
             var countryTrackIdKey = "trackId-" + countryId;
             var trackId = affiliate.trackIds[countryId];
             if (_.isUndefined(trackId)) trackId = '';
-            console.log(countryTrackIdKey + " has trackId from localstorage = " + trackId);
+            if (debugLogging) console.log(countryTrackIdKey + " has trackId from localstorage = " + trackId);
 
             countriesTable
                 .append($('<tr>')
@@ -297,9 +297,9 @@ function updateRemainingProbabilities(affiliateIdToUpdate, userProbability, sumP
 
         if (affiliateId != affiliateIdToUpdate && (userProbability == originalUserProbability || ignoreField)) {
             var affiliate = amazonAffiliates[affiliateId];
-            console.log("updateRemainingProbabilities: id=" + affiliateId + "   proba=" + affiliate.probability);
+            if (debugLogging) console.log("updateRemainingProbabilities: id=" + affiliateId + "   proba=" + affiliate.probability);
             affiliate.probability = affiliate.probability / sumProbabilities.sumRemainingProbabilities * remainingShare;
-            console.log("updateRemainingProbabilities: id=" + affiliateId + "   new proba=" + affiliate.probability);
+            if (debugLogging) console.log("updateRemainingProbabilities: id=" + affiliateId + "   new proba=" + affiliate.probability);
         }
     });
 }
@@ -312,7 +312,7 @@ var newAffiliatePrefix = 'active-new-affiliate';
 function addAffiliate() {
 
     var affiliateId = $('<div>').uniqueId().prop('id');
-    console.log("------> Adding affiliate " + affiliateId);
+    if (debugLogging) console.log("------> Adding affiliate " + affiliateId);
 
     amazonAffiliates[affiliateId] = {};
     var affiliate = amazonAffiliates[affiliateId];
@@ -364,7 +364,7 @@ function addAffiliate() {
 
         if (!_.isUndefined(countryTrackId) && !_.isEmpty(countryTrackId) //TODO want to save empty trackIds
         ) {
-            console.log("countryTrackId : " + countryTrackId);
+            if (debugLogging) console.log("countryTrackId : " + countryTrackId);
             affiliate.trackIds[countryId] = countryTrackId;
         }
 
@@ -388,7 +388,7 @@ $(document).ready(function () {
         var proceed = confirm("Are you sure you want to reset all the affiliates, codes and stats to default values?");
         if (!proceed) return;
 
-        console.log("Resetting settings to default values");
+        if (debugLogging) console.log("Resetting settings to default values");
         backgroundPage.resetAll();
         amazonAffiliates = backgroundPage.getAmazonAffiliates();
         reload_options();
