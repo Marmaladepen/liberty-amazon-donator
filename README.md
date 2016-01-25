@@ -1,8 +1,8 @@
-# Liberty Amazon Donator
+# Liberty Amazon Donator (Chrome Extension)
 
 ## Summary
 
-Automatically applies Amazon Affiliate Tracking Id of Liberty-promoting organizations to Amazon webpages you visit.
+Chrome extension that automatically applies Amazon Affiliate Tracking Id of Liberty-promoting organizations to Amazon webpages you visit.
 
 ## Purpose
 *Liberty Amazon Donator* is a Chrome browser extension that makes it easy to direct a portion of the money you spend on Amazon to your favorite Liberty organization at no cost to you!
@@ -20,6 +20,11 @@ You can add or remove an organization as well as update its affiliate codes per 
 If you'd prefer to give a particular organization more (or less) chances of a getting a share of your
 purchases, then you can increase (or decrease) its assigned probability to any value between 0% (will never be picked) and
 100% (will always be picked).
+   
+## Installation
+   
+Go to https://chrome.google.com/webstore/detail/liberty-amazon-donator/dnkigobamijpppfknldplodbjkedjkab with your Chrome browser.
+Go to the Options page in [Chrome Settings](chrome://extensions/) to change settings.
    
 ## Implementation
  
