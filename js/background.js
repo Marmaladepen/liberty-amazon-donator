@@ -6,7 +6,20 @@ var debugLogging = false;
 
 var AMAZON_AFFILIATE_URL_TAG = "tag";
 
+var defaultProbability = 1 / 6;
+
 var amazonAffiliatesDefault = {
+    'free-state-project': {
+      'name': 'Free State Project',
+      'description': 'The Free State Project is an attempt to build a libertarian homeland in New Hampshire. Over 3,000 FSP members or friends have already moved and it is the most pragmatic attempt to achieve liberty in the world today.',
+      'url': 'https://freestateproject.org/',
+      'trackIds': {
+          'US': 'XXX-XXXX'
+      },
+      'probability': defaultProbability,
+      'pickedcount': 0, lastpickeddate: 0
+    },
+    
     'freedomain-radio': {
         'name': 'Freedomain Radio',
         'description': "Freedomain Radio, with host Stefan Molyneux, is the largest and most popular philosophy show on the world, with over 75 million downloads. The show covers subjects ranging from politics, philosophy, science, atheism and economics to relationships, parenting and how to achieve real freedom in your life today. ",
@@ -16,7 +29,7 @@ var amazonAffiliatesDefault = {
             'CA': "freedradio03-20",
             'UK': "freedomainradio-21"
         },
-        'probability': 0.2,
+        'probability': defaultProbability,
         'pickedcount': 0, lastpickeddate: 0
     },
 
@@ -27,7 +40,7 @@ var amazonAffiliatesDefault = {
         'trackIds': {
             'US': "thomacom-20"
         },
-        'probability': 0.2,
+        'probability': defaultProbability,
         'pickedcount': 0, lastpickeddate: 0
     },
 
@@ -38,7 +51,7 @@ var amazonAffiliatesDefault = {
         'trackIds': {
             'US': "lewrockwell"
         },
-        'probability': 0.2,
+        'probability': defaultProbability,
         'pickedcount': 0, lastpickeddate: 0
     },
 
@@ -51,7 +64,7 @@ var amazonAffiliatesDefault = {
             'CA': "christcantwe-21",
             'UK': "christophe0d0-20"
         },
-        'probability': 0.2,
+        'probability': defaultProbability,
         'pickedcount': 0, lastpickeddate: 0
     },
 
@@ -62,7 +75,7 @@ var amazonAffiliatesDefault = {
         'trackIds': {
             'US': "theseastins0f-20"
         },
-        'probability': 0.2,
+        'probability': defaultProbability,
         'pickedcount': 0, lastpickeddate: 0
     }
 };
